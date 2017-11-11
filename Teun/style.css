@@ -1,0 +1,69 @@
+body {
+	background-image: url(main.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color: #000 ;
+}
+
+.home h1 {
+	font-size: 100px;
+	font-family: 'Montserrat', 'Roboto', sans-serif;
+	height: 75px;
+}
+
+.home {
+	padding-top: 50px;
+	text-align: center;
+	color: #FFF;
+}
+
+.home p{
+	font-size: 15px;
+	font-family: 'Montserrat', 'Roboto', sans-serif;
+}
+	
+.buttons {
+	font-family: 'Roboto+Mono', 'Montserrat', 'Roboto', sans-serif;
+	text-transform: UPPERCASE;
+	font-size: 30px;
+}
+
+.buttons ul{
+	text-align: center;
+	list-style-type: none;
+	margin-top: 50px;
+	padding: 0;
+}
+
+.buttons a {
+	color: #000;
+	text-decoration: none;
+}
+
+.buttons li {
+	border-radius: 5px;
+	background-color: #FFF;
+	display: inline;
+	width: 100px;
+	margin: 3px;
+	margin-bottom: 50px;
+}
+
+.buttons li:hover{
+	background-color: #999;
+	border-radius: 5px;
+}
+
+/*Tweak depending on button content*/
+.buttons #button1 {
+	font-size: 28px ;
+	padding: 0px 5px;
+}	
+
+.buttons #button2 {
+	padding: 0px 2px;
+}
+
+.buttons #button3 {
+	padding: 0px 5px;
+}
