@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>PONG!!!</title>
+    <link rel="icon" href=favicon.ico type=image/x-icon>
+    <link href=style.css rel=stylesheet type=text/css>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto|Anton|Roboto+Mono" rel="stylesheet">
+  </head>
+  
+  <body>
+
+    <div class=home>
+      <h1>Reins site!</h1>
+      <p>pls don't copyright claim this background kthnx</p>
+    </div>
+    
+  <canvas id="gameCanvas" width="800" height="600" style="padding:0;margin:auto;display:block;width:800px;" ></canvas>
+
+<script>
+var canvas;
+var canvasContext;
+var ballX;
+var ballY;
+var ballwidth = 10;
+var ballheight = 10;
+var centerX;
+var centerY;
+var originalBallSpeedX = 10;
+var originalBallSpeedY = 4;
+var ballSpeedX = originalBallSpeedX;
+var ballSpeedY = originalBallSpeedY;
+var botY;
+var playerY;
+var paddleLength = 100;
+var Y = playerY;
+var playerSpeed;
+var hitbox_add = 10;
+
+  window.onload = function() {
+    console.log("Loaded!!!  ");
+	canvas = document.getElementById("gameCanvas");
+	canvasContext = canvas.getContext('2d');
+		
+	centerX = canvas.width/2; //defines center of the canvas (X)
+	centerY = canvas.height/2;//defines center of the canvas (Y)
+	
+	ballX = centerX - ballwidth/2;//creates offset to perfectly center ball
+	ballY = centerY - ballheight/2;//^^^^
+
+	paddleY = centerY - paddleLength/2; //Creates offset to perfectly center the paddle
+	playerY = paddleY;
+	//botY = paddleY;
+	
+	var framesPerSecond = 60;
+	setInterval(callBoth, 1000/framesPerSecond);
+	
+	setInterval(calculatePaddleSpeed, 1000/framesPerSecond);
+		
+	canvas.addEventListener('mousemove',
+		function(evt) {
+			var mousePos = calculateMousePos(evt);
+			playerY = mousePos.y-paddleLength/2;
+		});
+  }
+  
+function calculatePaddleSpeed(){
+	var rawplayerSpeed
+	rawplayerSpeed = playerY - Y;
+	playerSpeed = rawplayerSpeed/2;
+	Y = playerY;
+}
+  
+function calculateMousePos(evt) {
+	var rect = canvas.getBoundingClientRect();
+	var root = document.documentElement;
+	var mouseX = evt.clientX - rect.left - root.scrollLeft;
+	var mouseY = evt.clientY - rect.top - root.scrollTop;
+	return {
+		x:mouseX,
+		y:mouseY
+	};
+}
+  
+  function callBoth() {
+	moveEverything();
+	draw();
+  }
+  
+  function moveEverything() {
+	  
+	//Ball
+	ballX = ballX + ballSpeedX;
+	ballY = ballY + ballSpeedY;
+	
+	//bot 
+	botY = ballY - paddleLength/2;
+	
+	//hit
+	if (ballX < 10){//human
+		if(ballY > playerY- hitbox_add &&
+			ballY < playerY + paddleLength + hitbox_add) {
+			ballSpeedX = -ballSpeedX;
+			ballSpeedY = playerSpeed;
+			console.log(playerSpeed);
+		}
+	}
+	
+	if (ballX > canvas.width-10){//bot
+		if(ballY > botY &&
+			ballY < botY + paddleLength) {
+			ballSpeedX = -ballSpeedX;
+		}
+	}
+	
+	if (ballX > canvas.width) {//Hit right canvas
+		centerBall();
+	}
+	if (ballY > canvas.height) {//Hit bottom canvas
+		ballSpeedY = -ballSpeedY;
+	}
+	
+	if (ballY < 0) {//Hit top canvas
+		ballSpeedY = -ballSpeedY;
+	}
+	
+	if (ballX < 0) {//Hit left canvas
+		centerBall();
+	}
+  
+  }
+  
+  function centerBall(){
+	console.log("dead =O")
+	ballX = centerX - ballwidth/2;//creates offset to perfectly center ball
+	ballY = centerY - ballheight/2;//^^^^
+	ballSpeedX = originalBallSpeedX;
+	ballSpeedY = originalBallSpeedY;
+  }
+  
+  function bot(){
+	ballY = paddlyY;
+  }
+  
+	// for drawMiddle
+	var position = 10;
+	var lines = 0;
+  
+  function drawMiddle(){
+	if (lines < 40){
+		drawRect(centerX, position , 5, 20, 'white');
+		position = position + 20;
+		lines = lines + 1;
+	}
+  }
+  
+  function draw() {
+	drawRect(0, 0, canvas.width, canvas.height, 'black');//background
+	drawRect(10, playerY, 10, paddleLength, 'white');//Paddle (left)(player)
+	drawRect(canvas.width-10*2, botY, 10, paddleLength, 'white');//Paddle (right)
+	drawRect(ballX, ballY, ballwidth, ballheight, 'white')//Ball
+  }
+	
+  function drawRect(X,Y , objectWidth,objectHeight , drawColor){
+	canvasContext.fillStyle = drawColor;
+	canvasContext.fillRect(X,Y, objectWidth, objectHeight);
+  }
+  
+</script>  
+  </body>
+</html>
