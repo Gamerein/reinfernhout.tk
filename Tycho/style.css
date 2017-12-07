@@ -11,6 +11,11 @@ body {
 	height: 75px;
 }
 
+/*Remove 000webhost mark*/
+  a[title="Hosted on free web hosting 000webhost.com. Host your own website for FREE."] {
+    visibility: hidden;
+}
+
 .home {
 	padding-top: 50px;
 	text-align: center;
