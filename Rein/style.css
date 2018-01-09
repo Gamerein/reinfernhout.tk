@@ -5,6 +5,11 @@ body {
 	background-color: #000 ;
 }
 
+/*Remove 000webhost mark*/
+a[title="Hosted on free web hosting 000webhost.com. Host your own website for FREE."] {
+    visibility: hidden;
+}
+
 .home h1 {
 	font-size: 100px;
 	font-family: 'Montserrat', 'Roboto', sans-serif;
