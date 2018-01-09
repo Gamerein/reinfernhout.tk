@@ -1,0 +1,23 @@
+tbody, td, th {
+    font-size: 20px;
+    border: 1px solid #fff !important;
+    color: #fff;
+    font-family: 'Montserrat', 'Roboto', sans-serif;
+    border: 1px solid #fff !important;
+    padding: 2px 5px 2px 5px;
+}
+
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+#punten {
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+th {
+    font-size: 24px;
+}
