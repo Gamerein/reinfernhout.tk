@@ -31,7 +31,7 @@
         echo "Connected successfully";
         }*/
 
-        $sql = "SELECT * FROM `punten`";
+        $sql = "SELECT * FROM `punten` ORDER BY `Punten` DESC";
         $result = $conn->query($sql);
         
         while($row = mysqli_fetch_array($result))
